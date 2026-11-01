@@ -197,13 +197,15 @@ export const BellCurveChart: React.FC<BellCurveChartProps> = ({
       </div>
 
       {/* SVG Gaussian Bell Curve Visualization */}
-      <div className="w-full overflow-x-auto bg-[#F8FAFC] border border-slate-200/80 rounded-lg p-3">
+      <div
+        className="w-full overflow-x-auto bg-[#F8FAFC] border border-slate-200/80 rounded-lg p-3"
+        dir="ltr"
+      >
         <svg
           viewBox="0 0 800 285"
           className="w-full h-auto min-w-[620px] select-none"
           role="img"
           aria-label="منحنى جاوس للتوزيع الطبيعي يوضح موقع الدرجة الكلية 163 ومؤشر القدرة العامة 167 في الذيل الأيمن المتطرف"
-          dir="ltr"
         >
           <defs>
             <linearGradient id="bellAreaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
