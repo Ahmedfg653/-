@@ -9,6 +9,7 @@ import { ExamineeSidebar } from './components/ExamineeSidebar';
 import { CoreIndicesGrid } from './components/CoreIndicesGrid';
 import { BellCurveChart, MetricSelectorId } from './components/BellCurveChart';
 import { SubtestsTable } from './components/SubtestsTable';
+import { CognitiveRadarChart } from './components/CognitiveRadarChart';
 import { buildStandaloneHtmlDocument } from './utils/standaloneHtmlGenerator';
 import { Printer, Download, Eye } from 'lucide-react';
 
@@ -80,6 +81,12 @@ export default function App() {
               className="hover:text-[#0F172A] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
             >
               الاختبارات الفرعية (12)
+            </a>
+            <a
+              href="#radar-chart-section"
+              className="hover:text-[#0F172A] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
+            >
+              ميزان القدرات
             </a>
           </nav>
 
@@ -191,7 +198,7 @@ export default function App() {
 
         {/* Responsive Two-Column Dashboard Layout:
             In RTL, the first grid child renders on the RIGHT (Personal Profile & Executive Summary + Hero Composite Cards),
-            and the second grid child renders on the LEFT (Core Indices, Gaussian Bell Curve SVG, and 12 Subtest Scaled Scores Table). */}
+            and the second grid child renders on the LEFT (Core Indices, Gaussian Bell Curve SVG, 12 Subtest Scaled Scores Table, and Radar Chart). */}
         <div
           className={`grid grid-cols-1 gap-6 items-start ${
             a4PreviewMode ? 'lg:grid-cols-1' : 'lg:grid-cols-12'
@@ -207,7 +214,7 @@ export default function App() {
             />
           </div>
 
-          {/* Left/Bottom Column: 4 Core Cognitive Indices, Bell Curve SVG, and 12 Subtests Table */}
+          {/* Left/Bottom Column: 4 Core Cognitive Indices, Bell Curve SVG, 12 Subtests Table, and Radar Chart */}
           <div className={`min-w-0 space-y-6 ${a4PreviewMode ? 'w-full' : 'lg:col-span-8 print-full-width'}`}>
             <CoreIndicesGrid
               indices={CORE_COGNITIVE_INDICES}
@@ -221,6 +228,13 @@ export default function App() {
             />
 
             <SubtestsTable subtests={SUBTESTS_DATA} />
+
+            <CognitiveRadarChart
+              indices={CORE_COGNITIVE_INDICES}
+              subtests={SUBTESTS_DATA}
+              selectedMetric={activeMetric}
+              onSelectMetric={setActiveMetric}
+            />
           </div>
         </div>
 

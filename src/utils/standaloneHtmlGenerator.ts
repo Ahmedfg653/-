@@ -208,6 +208,26 @@ export function buildStandaloneHtmlDocument(): string {
             <tbody>${subtestsRowsHtml}</tbody>
           </table>
         </div>
+        <div class="card">
+          <h3>المخطط الراداري لتوازن القدرات الإدراكية (Cognitive Balance Radar Chart)</h3>
+          <p style="font-size:12px;color:#64748B;margin-top:4px">مقارنة الفهم اللفظي (169)، الاستدلال البصري (165)، الذاكرة العاملة (161)، وسرعة المعالجة (157) بالمتوسط العالمي (100) وعتبة منسا (130)</p>
+          <svg viewBox="0 0 520 390" style="width:100%;max-width:440px;height:auto;display:block;margin:12px auto 0">
+            <polygon points="260,55 420,195 260,335 100,195" fill="none" stroke="#CBD5E1" stroke-width="1.2" />
+            <polygon points="260,115 360,195 260,275 160,195" fill="rgba(217,119,6,0.06)" stroke="#D97706" stroke-width="1.5" stroke-dasharray="4 3" />
+            <polygon points="260,155 310,195 260,235 210,195" fill="rgba(100,116,139,0.08)" stroke="#64748B" stroke-width="1.5" stroke-dasharray="3 3" />
+            <line x1="260" y1="55" x2="260" y2="335" stroke="#CBD5E1" />
+            <line x1="100" y1="195" x2="420" y2="195" stroke="#CBD5E1" />
+            <polygon points="260,64 405,195 260,316 127,195" fill="rgba(13,148,136,0.25)" stroke="#0D9488" stroke-width="2.5" />
+            <circle cx="260" cy="64" r="5" fill="#D97706" />
+            <text x="260" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#0F172A">الفهم اللفظي VCI: 169 (+4.60 SD)</text>
+            <circle cx="405" cy="195" r="5" fill="#D97706" />
+            <text x="462" y="199" text-anchor="middle" font-size="11" font-weight="bold" fill="#0F172A">PRI: 165</text>
+            <circle cx="260" cy="316" r="5" fill="#0D9488" />
+            <text x="260" y="360" text-anchor="middle" font-size="11" font-weight="bold" fill="#0F172A">الذاكرة العاملة WMI: 161 (+4.07 SD)</text>
+            <circle cx="127" cy="195" r="5" fill="#0D9488" />
+            <text x="58" y="199" text-anchor="middle" font-size="11" font-weight="bold" fill="#0F172A">PSI: 157</text>
+          </svg>
+        </div>
       </main>
     </div>
   </div>

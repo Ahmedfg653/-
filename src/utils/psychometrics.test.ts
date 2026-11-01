@@ -12,6 +12,7 @@ import {
   generateBellCurveSvgPath,
   filterSubtests,
   calculateSubtestSummary,
+  calculateRadarPolygonPoints,
 } from './psychometrics';
 
 test('Examinee metadata matches exact specifications', () => {
@@ -76,3 +77,34 @@ test('SVG Gaussian Bell Curve coordinate generator produces valid ordered coordi
   assert.ok(linePath.startsWith('M 50'));
   assert.ok(areaPath.endsWith('Z'));
 });
+
+test('Radar Chart polygon generator produces 4 orthogonal vertices for VCI, PRI, WMI, PSI', () => {
+  const { points, svgPointsString } = calculateRadarPolygonPoints(
+    CORE_COGNITIVE_INDICES.map((i) => ({
+      code: i.code,
+      label: i.arabicName,
+      value: i.score,
+    })),
+    70,
+    175,
+    250,
+    210,
+    145
+  );
+
+  assert.equal(points.length, 4);
+  // Top vertex (VCI 169): angle -90 deg -> x = 250, y < 210
+  assert.equal(points[0].x, 250);
+  assert.ok(points[0].y < 210);
+  // Right vertex (PRI 165): angle 0 deg -> x > 250, y = 210
+  assert.ok(points[1].x > 250);
+  assert.equal(points[1].y, 210);
+  // Bottom vertex (WMI 161): angle 90 deg -> x = 250, y > 210
+  assert.equal(points[2].x, 250);
+  assert.ok(points[2].y > 210);
+  // Left vertex (PSI 157): angle 180 deg -> x < 250, y = 210
+  assert.ok(points[3].x < 250);
+  assert.equal(points[3].y, 210);
+  assert.equal(svgPointsString.split(' ').length, 4);
+});
+

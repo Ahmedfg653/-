@@ -114,3 +114,48 @@ export function calculateSubtestSummary(subtests: SubtestItem[]): {
     sumScaledScores,
   };
 }
+
+export interface RadarPoint {
+  x: number;
+  y: number;
+  angleDeg: number;
+  value: number;
+  label: string;
+  code: string;
+}
+
+/**
+ * Calculates 2D SVG coordinates for an N-axis Radar Chart polygon.
+ * Angles start at -90 deg (top) and proceed clockwise.
+ */
+export function calculateRadarPolygonPoints(
+  items: Array<{ code: string; label: string; value: number }>,
+  minVal: number,
+  maxVal: number,
+  centerX = 250,
+  centerY = 210,
+  maxRadius = 145
+): { points: RadarPoint[]; svgPointsString: string } {
+  const count = items.length;
+  const points: RadarPoint[] = items.map((item, idx) => {
+    const angleDeg = -90 + (idx * 360) / count;
+    const angleRad = (angleDeg * Math.PI) / 180;
+    const clamped = Math.max(minVal, Math.min(maxVal, item.value));
+    const normalized = (clamped - minVal) / (maxVal - minVal);
+    const r = normalized * maxRadius;
+    const x = Number((centerX + r * Math.cos(angleRad)).toFixed(2));
+    const y = Number((centerY + r * Math.sin(angleRad)).toFixed(2));
+    return {
+      x,
+      y,
+      angleDeg,
+      value: item.value,
+      label: item.label,
+      code: item.code,
+    };
+  });
+
+  const svgPointsString = points.map((p) => `${p.x},${p.y}`).join(' ');
+  return { points, svgPointsString };
+}
+
