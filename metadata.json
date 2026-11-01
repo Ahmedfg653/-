@@ -2,5 +2,7 @@
   "name": "WAIS-IV Extended Psychometric Assessment Report",
   "description": "تقرير التقييم السيكومتري المتقدم للقدرات الإدراكية والذكاء العام — مقياس وكسلر لذكاء البالغين الإصدار الرابع (المعايير الممتدة WAIS-IV Extended Norms)",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
